@@ -26,16 +26,23 @@ public class ClawTeleop extends OpMode {
         doIntake();
     }
 
-    public void doDrive() {
-        double lPower = gamepad1.left_stick_y;
-        double rPower = gamepad1.right_stick_y;
+    public void doDriveDirect() { robot.setDriveMotorPower(gamepad1.left_stick_y, gamepad1.right_stick_y); }
 
-        robot.setDriveMotorPower(lPower, rPower);
+    public void doDrive() {
+        double leftPower = gamepad1.left_stick_y - gamepad1.right_stick_x;
+        double rightPower = gamepad1.left_stick_y + gamepad1.right_stick_x;
+
+        double max = Math.max(Math.abs(leftPower), Math.abs(rightPower));
+        if (max > 1.0) {
+            leftPower /= max;
+            rightPower /= max;
+        }
+
+        robot.setDriveMotorPower(leftPower, rightPower);
     }
 
     public void doIntake() {
-        if(gamepad1.dpad_down) { robot.setIntakePosition(0.0); }
-        if(gamepad1.dpad_right) { robot.setIntakePosition(0.5); }
-        if(gamepad1.dpad_up) { robot.setIntakePosition(1.0); }
+        if(gamepad1.left_bumper) { robot.setIntakePosition(0.0); }
+        if(gamepad1.right_bumper) { robot.setIntakePosition(0.71); }
     }
 }
