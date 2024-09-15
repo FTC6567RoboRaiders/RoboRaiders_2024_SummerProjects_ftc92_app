@@ -5,6 +5,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Robots.MinibotServo;
 
+
+/**
+ * ClampBot Telelop
+ */
 @TeleOp(name = "Clamp Teleop")
 
 public class ClampTeleop extends OpMode {
