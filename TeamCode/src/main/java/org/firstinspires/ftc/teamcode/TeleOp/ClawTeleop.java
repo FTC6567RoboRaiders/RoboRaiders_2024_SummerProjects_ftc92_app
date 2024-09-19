@@ -38,7 +38,7 @@ public class ClawTeleop extends OpMode {
             rightPower /= max;
         }
 
-        robot.setDriveMotorPower(leftPower, rightPower);
+        robot.setDriveMotorPower(leftPower * 0.5, rightPower * 0.5);
     }
 
     public void doIntake() {

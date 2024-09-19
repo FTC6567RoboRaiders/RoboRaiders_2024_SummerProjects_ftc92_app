@@ -14,7 +14,7 @@ public class ClampTeleop extends OpMode {
     public void init() {
         robot.initialize(hardwareMap);
 
-        robot.setIntakePosition(1.0);
+        robot.setIntakePosition(0.0);
     }
 
     @Override
@@ -38,11 +38,11 @@ public class ClampTeleop extends OpMode {
             rightPower /= max;
         }
 
-        robot.setDriveMotorPower(leftPower, rightPower);
+        robot.setDriveMotorPower(leftPower * 0.5, rightPower * 0.5);
     }
 
     public void doIntake() {
         if(gamepad1.left_bumper) { robot.setIntakePosition(0.0); }
-        if(gamepad1.right_bumper) { robot.setIntakePosition(1.0); }
+        if(gamepad1.right_bumper) { robot.setIntakePosition(0.75); }
     }
 }
